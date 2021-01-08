@@ -1,0 +1,57 @@
+.background-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+.background-image::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  filter: grayscale(98%);
+  background-image: url("../img/background2.jpg");
+  background-size: cover;
+}
+
+.row-background {
+  margin-top: 10%;
+  border-bottom-left-radius: 20px;
+}
+.left-side-loginFeild {
+  background: #ececee;
+  height: 500px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.left-side-qpaylogo {
+  background: #383e47;
+  opacity: 81%;
+  height: 500px;
+  border-bottom-right-radius: 20px;
+
+  border-top-right-radius: 20px;
+}
+.login-content {
+  margin-left: 5%;
+}
+.logo-content {
+  margin-left: 5%;
+}
+.qpay-logo-login-page {
+  width: 70px;
+  height: 70px;
+  margin-top: 20%;
+}
+.line {
+  background: transparent linear-gradient(271deg, #ebcc4f 0%, #766628 100%) 0%
+    0% no-repeat padding-box;
+  height: 0.3rem;
+  width: 70%;
+  margin-bottom: 2rem;
+  border-radius: 0 0 2rem 0;
+  margin-top: 7px;
+}
