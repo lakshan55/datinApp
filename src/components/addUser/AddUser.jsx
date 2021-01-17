@@ -139,16 +139,15 @@ function AddUser(props) {
       },
     ],
   };
-    const getToken = localStorage.getItem("session2");
+  const getToken = localStorage.getItem("session2");
   const packet = {
-      method: "GET",
-      headers: {
-        //   Accept: "application/json, text/plain, *!/!*",
-        "Content-Type": "application/json",
-        "auth-token": getToken,
-      },
-
-    };
+    method: "GET",
+    headers: {
+      //   Accept: "application/json, text/plain, *!/!*",
+      "Content-Type": "application/json",
+      "auth-token": getToken,
+    },
+  };
 
   return (
     <Grid>
@@ -203,41 +202,46 @@ function AddUser(props) {
           //   },
           // ]}
           //   columns={state.columns}
-            data={(query) =>
-              new Promise((resolve, reject) => {
-                
-                let url = "https://wataniface.herokuapp.com/admin/getAllFakeUsers?limit=10&skip=0"
-                fetch(url,packet)
-                  .then((response) => response.json())
-                  .then(async (result) => {
-                    console.log(result);
-                    setSchemeName(result);
-                    if (result.data) {
-                      if (result.data.length === 0)
-                        await setMessage("No Devices");
-                      resolve({
-                        data: result.data,
-                        page: result.page,
-                        totalCount: result.total + 1,
-                      });
-                    } else if (result.error === "invalid_token") {
-                      console.log("here is go to login page");
-                    } else {
-                      // await setSnackVariant("error");
-                      // await setSnackText(
-                      //   "Device module is not working properly."
-                      // );
-                      await setMessage("Could not reach the server");
-                      resolve({
-                        data: [],
-                        page: 0,
-                        totalCount: 1,
-                      });
-                    }
-                  })
-                  .catch((err) => reject(err));
-              }).catch((err) => console.log(err))
-            }
+          data={(query) =>
+            new Promise((resolve, reject) => {
+              // let url = "https://wataniface.herokuapp.com/admin/getAllFakeUsers?limit=10&skip=0"
+              console.log("query");
+              console.log(query);
+              let url =
+                "https://wataniface.herokuapp.com/admin/getAllFakeUsers?";
+              url += "limit=" + query.pageSize;
+              url += "&skip=" + 2;
+              fetch(url, packet)
+                .then((response) => response.json())
+                .then(async (result) => {
+                  console.log(result);
+                  setSchemeName(result);
+                  if (result.data) {
+                    if (result.data.length === 0)
+                      await setMessage("No Devices");
+                    resolve({
+                      data: result.data,
+                      page: result.page,
+                      totalCount: result.total + 1,
+                    });
+                  } else if (result.error === "invalid_token") {
+                    console.log("here is go to login page");
+                  } else {
+                    // await setSnackVariant("error");
+                    // await setSnackText(
+                    //   "Device module is not working properly."
+                    // );
+                    await setMessage("Could not reach the server");
+                    resolve({
+                      data: [],
+                      page: 0,
+                      totalCount: 1,
+                    });
+                  }
+                })
+                .catch((err) => reject(err));
+            }).catch((err) => console.log(err))
+          }
           icons={tableIcons}
           actions={[
             {
@@ -272,7 +276,7 @@ function AddUser(props) {
             // },
           ]}
           options={{
-            pageSize: 10,
+            pageSize: 50,
             actionsColumnIndex: -1,
             headerStyle: {
               fontSize: "1rem",
@@ -291,6 +295,7 @@ function AddUser(props) {
             loadingType: "overlay",
             paginationType: "stepped",
             search: false,
+            pageSizeOptions: [50, 150, 200],
           }}
           localization={{
             body: {

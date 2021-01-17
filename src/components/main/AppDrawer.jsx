@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import clsx from "clsx";
 import { useHistory } from "react-router-dom";
@@ -175,7 +173,7 @@ const AppDrawer = (props) => {
       <MainCategory
         open={open}
         handleMainCategory={dashhandleExpandClick}
-        category={"GENERAL"}
+        category={"Users"}
         expandedState={dashExpanded}
       />
       <Collapse in={dashExpanded} timeout={500} unmountOnExit>
@@ -202,350 +200,10 @@ const AppDrawer = (props) => {
         open={open}
         active={active}
         setActive={setActive}
-        linkPath={DASHBOARD}
-        selectButton={DASHBOARD}
+        linkPath={"adduser"}
+        selectButton={"adduser"}
         drawerIcon={
           <DashboardIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={CLIENTS}
-        selectButton={CLIENTS}
-        drawerIcon={
-          <PeopleIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={LEADS}
-        selectButton={LEADS}
-        drawerIcon={
-          <AccountBox style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-    </>
-  );
-
-  /**
-   * Secondary item list on the drawer
-   */
-  const secondaryListItems = (
-    <div className={dClasses.mainList}>
-      <MainCategory
-        open={open}
-        handleMainCategory={elementhandleExpandClick}
-        category={"ELEMENTS"}
-        expandedState={elmentExpanded}
-      />
-      <Collapse in={elmentExpanded} timeout={500} unmountOnExit>
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Tasks"}
-          linkPath={TASKS}
-          selectButton={TASKS}
-          drawerIcon={<AlarmIcon style={{ color: "#E3E9EF" }} />}
-        />
-
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Insights"}
-          linkPath={INSIGHTS}
-          selectButton={INSIGHTS}
-          drawerIcon={<Highlight style={{ color: "#E3E9EF" }} />}
-        />
-
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Modeling"}
-          linkPath={MODELING}
-          selectButton={MODELING}
-          drawerIcon={<TrendingIcon style={{ color: "#E3E9EF" }} />}
-        />
-
-        <ListItem
-          onClick={templateExpanClick}
-          className={
-            open && active === TEMPLATES
-              ? classes.activeListItem
-              : open
-              ? templateExpanded
-                ? classes.listItemCollapse
-                : classes.listItem
-              : classes.closedListItem
-          }
-          button
-        >
-          <ListItemIcon>
-            <EventNoteIcon style={{ color: "#E3E9EF" }} />
-          </ListItemIcon>{" "}
-          {templateExpanded ? (
-            <ExpandLessIcon className={dClasses.mainListIcon} />
-          ) : (
-            <ExpandMoreIcon className={dClasses.mainListIcon} />
-          )}
-          <ListItemText primary="Templates" />
-        </ListItem>
-        <Collapse
-          className={classes.subListCollapse}
-          in={templateExpanded}
-          timeout="auto"
-          unmountOnExit
-        >
-          {
-            // This is sub Components of temmplate
-          }
-          <div style={{ marginTop: "35px" }}>
-         
-            <ListItem
-              component={ReactLink}
-              to={"loka"}
-              onClick={() => setActive(DOCUMENTS)}
-              className={
-                open && active === DOCUMENTS
-                  ? classes.activeListSubItem
-                  : open
-                  ? classes.subItemComponents
-                  : classes.closedListItem
-              }
-              button
-            >
-              <ListItemIcon>
-                <FolderIcon style={{ color: "#E3E9EF" }} />
-              </ListItemIcon>
-              <ListItemText primary="Documents" />
-            </ListItem>
-
-            <ListItem
-              component={ReactLink}
-              to={WORKFLOWS}
-              onClick={() => setActive(WORKFLOWS)}
-              className={
-                open && active === WORKFLOWS
-                  ? classes.activeListSubItem
-                  : open
-                  ? classes.subItemComponents
-                  : classes.closedListItem
-              }
-              button
-            >
-              <ListItemIcon>
-                <TimelineIcon style={{ color: "#E3E9EF" }} />
-              </ListItemIcon>
-              <ListItemText primary="Workflows" />
-            </ListItem>
-          </div>
-          {
-            // This is sub Components of temmplate end
-          }
-        </Collapse>
-
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Uploads"}
-          linkPath={UPLOADS}
-          selectButton={UPLOADS}
-          drawerIcon={<PublishIcon style={{ color: "#E3E9EF" }} />}
-        />
-      </Collapse>
-    </div>
-  );
-
-  // drawer close  mainListItemsClose
-
-  const secondaryListItemsClose = (
-    <>
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={TASKS}
-        selectButton={TASKS}
-        drawerIcon={
-          <AlarmIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={INSIGHTS}
-        selectButton={INSIGHTS}
-        drawerIcon={
-          <Highlight style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={MODELING}
-        selectButton={MODELING}
-        drawerIcon={
-          <TrendingIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={TEMPLATES}
-        selectButton={TEMPLATES}
-        drawerIcon={
-          <EventNoteIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={UPLOADS}
-        selectButton={UPLOADS}
-        drawerIcon={
-          <PublishIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-    </>
-  );
-
-  // third item list on the drawer
-
-  const thirdaryListItems = (
-    <div className={dClasses.mainList}>
-      <MainCategory
-        open={open}
-        handleMainCategory={NotifihandleExpandClick}
-        category={"NOTIFICATIONS"}
-        expandedState={notifiExpanded}
-      />
-      <Collapse in={notifiExpanded} timeout={500} unmountOnExit>
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Email"}
-          linkPath={"/main/emails"}
-          selectButton={EMAIL}
-          drawerIcon={<MailOutlineIcon style={{ color: "#E3E9EF" }} />}
-        />
-
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Chat"}
-          linkPath={CHAT}
-          selectButton={CHAT}
-          drawerIcon={<Highlight style={{ color: "#E3E9EF" }} />}
-        />
-      </Collapse>
-    </div>
-  );
-
-  // drawer close  mainListItemsClose
-
-  const thirdaryListItemsClose = (
-    <>
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={EMAIL}
-        selectButton={EMAIL}
-        drawerIcon={
-          <MailOutlineIcon
-            style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }}
-          />
-        }
-      />
-
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={CHAT}
-        selectButton={CHAT}
-        drawerIcon={
-          <Highlight style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
-        }
-      />
-    </>
-  );
-
-  // forth item list on the drawer
-
-  const fortharyListItems = (
-    <div className={dClasses.mainList}>
-      <MainCategory
-        open={open}
-        handleMainCategory={collapshandleExpandClick}
-        category={"EXTRAS"}
-        expandedState={collapsExpanded}
-      />
-
-      <Collapse in={collapsExpanded} timeout={500} unmountOnExit>
-        <SubCategory
-          classes={classes}
-          open={open}
-          active={active}
-          setActive={setActive}
-          subTitle={"Maps"}
-          linkPath={MAPS}
-          selectButton={MAPS}
-          drawerIcon={<MapIcon style={{ color: "#E3E9EF" }} />}
-        />
-
-        {
-          //templates collapse
-        }
-      </Collapse>
-    </div>
-  );
-
-  const fortharyListItemsClose = (
-    <>
-      <SubCategoryClose
-        classes={classes}
-        open={open}
-        active={active}
-        setActive={setActive}
-        linkPath={MAPS}
-        selectButton={MAPS}
-        drawerIcon={
-          <MapIcon style={{ color: "#E3E9EF", marginLeft: "-0.2rem" }} />
         }
       />
     </>
@@ -573,41 +231,14 @@ const AppDrawer = (props) => {
             />
           </IconButton>
         </div>
-        <div className={classes.profile} hidden={!open}>
+        {/* <div className={classes.profile} hidden={!open}>
           <Avatar alt={"name"} src={Profile} className={classes.bigAvatar} />
-        </div>
-        {open ? (
-          <Divider
-            style={{
-              backgroundColor: "#E3E9EF",
-              margin: "2rem 1rem 1rem 1rem",
-            }}
-          />
-        ) : (
-          <Divider
-            style={{
-              backgroundColor: "#E3E9EF",
-              margin: "2rem 1rem 1rem 1rem",
-              width: "2.5rem",
-            }}
-          />
-        )}
+        </div> */}
 
         <List style={{ margin: "0.5rem", borderRadius: "1rem 0 1rem 0" }}>
           {open ? mainListItems : mainListItemsClose}
         </List>
-        <Divider style={{ backgroundColor: "transparent" }} />
-        <List style={{ margin: "0.5rem", borderRadius: "1rem 0 1rem 0" }}>
-          {open ? secondaryListItems : secondaryListItemsClose}
-        </List>
-        <Divider style={{ backgroundColor: "transparent" }} />
-        <List style={{ margin: "0.5rem", borderRadius: "1rem 0 1rem 0" }}>
-          {open ? thirdaryListItems : thirdaryListItemsClose}
-        </List>
-        <Divider style={{ backgroundColor: "transparent" }} />
-        <List style={{ margin: "0.5rem", borderRadius: "1rem 0 1rem 0" }}>
-          {open ? fortharyListItems : fortharyListItemsClose}
-        </List>
+
         <List
           hidden={!open}
           style={{
@@ -615,79 +246,20 @@ const AppDrawer = (props) => {
             borderRadius: "1rem 0 1rem 0",
             width: "15.7rem",
           }}
-        >
-          <ListItem
-            className={open ? classes.listItem : classes.closedListItem}
-            style={{
-              marginBottom: 0,
-              borderRadius: subOpen ? "1.5rem 1.5rem 0 0" : "1.5rem",
-            }}
-            button
-            onClick={handleClick}
-          >
-            <ListItemIcon>
-              <Tune style={{ color: "#E3E9EF" }} />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-            {subOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={subOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem
-                className={
-                  open ? classes.subListItem : classes.closedSubListItem
-                }
-                button
-              >
-                <ListItemText primary="Dark Mode" />
-                <ListItemSecondaryAction></ListItemSecondaryAction>
-              </ListItem>
-              <ListItem
-                className={
-                  open ? classes.subListItemEnd : classes.closedSubListItem
-                }
-                button
-              >
-                <ListItemText primary="Private Mode" />
-                <ListItemSecondaryAction>
-                  <Switch
-                    checked={privateMode}
-                    color="primary"
-                    onChange={() => setPrivateMode(!privateMode)}
-                    value="checkedA"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
-                  />
-                </ListItemSecondaryAction>
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
-        {open ? (
-          <Divider
-            style={{
-              backgroundColor: "#E3E9EF",
-              margin: "2rem 1rem 1rem 1rem",
-            }}
-          />
-        ) : (
-          <Divider
-            style={{
-              backgroundColor: "#E3E9EF",
-              margin: "2rem 1rem 1rem 1rem",
-              width: "2.5rem",
-            }}
-          />
-        )}
+        ></List>
+
         <List
           style={{
             margin: "3rem 0.5rem 0.5rem 4rem",
             borderRadius: "1rem 0 1rem 0",
+            marginTop: "25rem",
           }}
         >
           <ListItem
-              onClick={() =>{
-localStorage.removeItem("session2"); history.push("dashboard/adduser")
-              } }
+            onClick={() => {
+              localStorage.removeItem("session2");
+              history.push("dashboard/adduser");
+            }}
             className={open ? classes.listAction : classes.closedListAction}
             button
           >

@@ -118,12 +118,12 @@ const LoginScreen = () => {
       <div className="container ">
         <div
           className="row row-background  "
-          style={{ justifyContent: "center", alignItems: "center" }}
+          //    style={{ justifyContent: "center", alignItems: "center" }}
         >
-          <div className="col-4 left-side-loginFeild">
-            <div className="login-content">
+          <Grid container>
+            <Grid item xs={4}>
               <Typography
-                style={{ marginTop: "30%" }}
+                style={{ color: "#fff", zIndex: "1200" }}
                 variant="body1"
                 color="textSecondary"
               >
@@ -133,96 +133,98 @@ const LoginScreen = () => {
               <Typography variant="h5" gutterBottom>
                 Login to your account
               </Typography>
-              <form className={classes.form} noValidate>
-                <CssTextField
-                  variant="filled"
-                  margin="dense"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email "
-                  name="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  autoComplete="email"
-                  autoFocus
-                  style={{ marginTop: "20%" }}
-                  inputProps={{
-                    className: inputProps,
-                  }}
-                />
-                <CssTextField
-                  variant="filled"
-                  margin="dense"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  style={{ marginTop: "10%" }}
-                />
-                <Grid container>
-                  <Grid item xs>
-                    <Link
-                      className="float-right"
-                      href="#"
-                      variant="body2"
-                      color="textSecondary"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        setForgotPassword(true);
-                      }}
-                    >
-                      Forgot password?
-                    </Link>
+              <Grid item xs={12} style={{ marginTop: "30%" }}>
+                <form className={classes.form} noValidate>
+                  <CssTextField
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email "
+                    name="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    autoComplete="email"
+                    autoFocus
+                    style={{ marginTop: "20%" }}
+                    inputProps={{
+                      className: inputProps,
+                    }}
+                  />
+                  <CssTextField
+                    variant="filled"
+                    margin="dense"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    style={{ marginTop: "10%" }}
+                  />
+                  <Grid container>
+                    <Grid item xs>
+                      <Link
+                        className="float-right"
+                        href="#"
+                        variant="body2"
+                        color="textSecondary"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setForgotPassword(true);
+                        }}
+                      >
+                        Forgot password?
+                      </Link>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <ColorButton
-                  variant="contained"
-                  color="primary"
-                  className={classes.margin}
-                  onClick={login}
+                  <ColorButton
+                    variant="contained"
+                    color="primary"
+                    className={classes.margin}
+                    onClick={login}
+                  >
+                    {/* {loginButtonText} */}
+                    sign in
+                  </ColorButton>
+                </form>
+              </Grid>
+            </Grid>
+            {/* <Grid item xs={8} className=" left-side-qpaylogo">
+              <div className="logo-content">
+                <img
+                  className="qpay-logo-login-page"
+                  src={logo}
+                  alt="qpay-logo"
+                />
+                <div className="line"></div>
+                <p
+                  style={{
+                    marginTop: "5%",
+                    color: "#ECECEE",
+                    fontSize: "15px",
+                  }}
                 >
-                  {/* {loginButtonText} */}
-                  sign in
-                </ColorButton>
-              </form>
-            </div>
-          </div>
-          <div className="col-5 left-side-qpaylogo">
-            <div className="logo-content">
-              <img
-                className="qpay-logo-login-page"
-                src={logo}
-                alt="qpay-logo"
-              />
-              <div className="line"></div>
-              <p
-                style={{
-                  marginTop: "5%",
-                  color: "#ECECEE",
-                  fontSize: "15px",
-                }}
-              >
-                To keep connected with us, please loging with your login
-                credentials
-              </p>
+                  To keep connected with us, please loging with your login
+                  credentials
+                </p>
 
-              <div
-                className="row"
-                style={{
-                  marginTop: "200px",
-                  marginLeft: "4px",
-                  color: "#9A9A9A",
-                  fontSize: "13px",
-                }}
-              ></div>
-            </div>
-          </div>
+                <div
+                  className="row"
+                  style={{
+                    marginTop: "200px",
+                    marginLeft: "4px",
+                    color: "#9A9A9A",
+                    fontSize: "13px",
+                  }}
+                ></div>
+              </div>
+            </Grid> */}
+          </Grid>
         </div>
       </div>
     </div>

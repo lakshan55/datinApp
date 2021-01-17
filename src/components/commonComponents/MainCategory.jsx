@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, CardActions } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import AddIcon from "@material-ui/icons/Add";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const drawerStyles = makeStyles((theme) => ({
   mainList: {
@@ -55,7 +55,7 @@ function MainCategory(props) {
       {expandedState ? (
         <ExpandLessIcon hidden={!open} className={dClasses.mainListIcon} />
       ) : (
-        <AddIcon className={dClasses.mainListIcon} />
+        <ExpandMoreIcon className={dClasses.mainListIcon} />
       )}
     </CardActions>
   );

@@ -15,19 +15,22 @@ import {
   DialogTitle,
   DialogActions,
   DialogContentText,
+  Avatar,
   Grow,
   ListItemIcon,
   ListItemText,
   Typography,
   ListItem,
+  IconButton,
   Grid,
 } from "@material-ui/core";
-
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import DevicesOtherOutlined from "@material-ui/icons/DevicesOtherOutlined";
 import SettingsIcon from "@material-ui/icons/Settings";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 
 import FormikInput from "../commonComponents/FormikInput";
+import CommonSelect from "../commonComponents/CommonSelect";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Grow ref={ref} {...props} />;
@@ -60,21 +63,40 @@ function DialogAddUser(props) {
   };
 
   const validationSchema = Yup.object({
-     firstName: Yup.string().required("Required"),
-     lastName: Yup.string().required("Required"),
-     gender: Yup.string().required("Required"),
-     birthday: Yup.string().required("Required"),
-     phone: Yup.string().required("Required"),
-      email: Yup.string().required("Required"),
-      address: Yup.string().required("Required"),
-    city: Yup.string().required("Required"),
-     country: Yup.string().required("Required"),
-     about: Yup.string().required("Required"),
+    firstName: Yup.string().required("Required"),
+    lastName: Yup.string().required("Required"),
+    gender: Yup.string().required("Required"),
+    birthday: Yup.string().required("Required"),
+    phone: Yup.string().required("Required"),
+    email: Yup.string().required("Required"),
+    address: Yup.string().required("Required"),
   });
- 
+  //show the image
+  const [imageName, setImageName] = React.useState(null);
+  const [baseImg, setBaseImg] = React.useState("");
+
+  //upload image
+  const handleUploadImg = (e) => {
+    const files = e.target.files;
+    const file = files && files[0];
+    file && setImageName(URL.createObjectURL(file));
+    file && getBase64(file);
+  };
+
+  // get base 64 code
+  const onLoad = (fileString) => {
+    setBaseImg(fileString);
+  };
+
+  const getBase64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
   const onSubmit = async (values, submitProps) => {
     const getToken = localStorage.getItem("session2");
- 
 
     values.lat = "0.2545";
     values.long = "-9.525566";
@@ -95,13 +117,24 @@ function DialogAddUser(props) {
     await fetch(url, packet)
       .then((response) => response.json())
       .then((result) => {
-        // refreshTable();
-        handleDialogClose();
-        submitProps.setSubmitting(false);
-        submitProps.resetForm();
+        if (result.status === "success") {
+          refreshTable();
+          submitProps.setSubmitting(false);
+          submitProps.resetForm();
+          handleDialogClose();
+        }
       })
       .catch((err) => console.log(err));
   };
+
+  const genderOptions = [
+    {
+      value: "Male",
+    },
+    {
+      value: "Female",
+    },
+  ];
 
   return (
     <>
@@ -135,25 +168,75 @@ function DialogAddUser(props) {
             {(formik) => {
               return (
                 <Form noValidate>
+                  <Grid
+                    container
+                    //  justify="center"
+                    item
+                    xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+                  >
+                    <div>
+                      <Avatar
+                        style={{ width: "8rem", height: "8rem" }}
+                        alt="Profile_img"
+                        src={imageName}
+                      />
+
+                      <IconButton
+                        style={{
+                          margin: "-1.6rem 0rem 0rem 2.8rem",
+                          backgroundColor: "#fff",
+                          borderRadius: "50%",
+                          width: "2rem",
+                          height: "2rem",
+                          outline: "none",
+                        }}
+                      >
+                        <input
+                          onChange={handleUploadImg}
+                          name="summaryImg"
+                          accept="image/*"
+                          hidden={true}
+                          type="file"
+                          id="summary-img-upload"
+                        />
+                        <label htmlFor="summary-img-upload">
+                          <PhotoCameraIcon
+                            style={{
+                              color: "#8D95A2",
+                              fontSize: "1rem",
+                              marginTop: "0.4rem",
+                            }}
+                          />
+                        </label>
+                      </IconButton>
+                    </div>
+                  </Grid>
                   <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="firstName"
                         type="text"
                         label={"First Name"}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="lastName"
                         type="text"
                         label={"Last Name"}
                       />
                     </Grid>
-                    <Grid item xs={6}>
-                      <FormikInput name="gender" type="text" label={"Gender"} />
+                    <Grid item xs={4}>
+                      <CommonSelect
+                        name="gender"
+                        label={"Gender"}
+                        options={genderOptions}
+                      />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="birthday"
                         type="date"
@@ -161,34 +244,34 @@ function DialogAddUser(props) {
                         shrink
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="phone"
                         type="number"
                         label={"Phone No"}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput name="email" type="text" label={"E-mail"} />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="address"
                         type="text"
                         label={"Address"}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput name="city" type="text" label={"City"} />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput
                         name="country"
                         type="text"
                         label={"Country"}
                       />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                       <FormikInput name="About" type="text" label={"About"} />
                     </Grid>
 

@@ -13,7 +13,8 @@
   height: 100%;
   position: absolute;
   filter: grayscale(98%);
-  background-image: url("../img/background2.jpg");
+  /* // background-image: url("../img/background2.jpg"); */
+  background-image: url("../img/lovers.jpg");
   background-size: cover;
 }
 
